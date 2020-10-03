@@ -364,12 +364,12 @@ mainmenu_selection=$(whiptail --title "Main Menu" --menu --notags \
 	"" 20 78 12 -- \
 	"install" "Install Docker" \
 	"build" "Build Stack" \
-	"hassio" "Install Home Assistant (Requires Docker)" \
+	"apex-connect" "Install Apex Connect+ (Requires Apex MCU)" \
 	"native" "Native Installs" \
 	"commands" "Docker commands" \
 	"backup" "Backup options" \
 	"misc" "Miscellaneous commands" \
-	"update" "Update IOTstack" \
+	"update" "Update Apex Supervised Installer" \
 	3>&1 1>&2 2>&3)
 
 case $mainmenu_selection in
@@ -592,7 +592,7 @@ case $mainmenu_selection in
 	;;
 
 "apex-connect")
-	echo "install requirements for apex connect+"
+	echo "Installation requirements for Apex Connect+ over MCU"
 	sudo apt install -y bash jq curl avahi-daemon dbus
 	hassio_machine=$(whiptail --title "Machine type" --menu \
 		"Please select you device type" 20 78 12 -- \
