@@ -612,7 +612,7 @@ case $mainmenu_selection in
 		"tinker" " " \
 		3>&1 1>&2 2>&3)
 	if [ -n "$hassio_machine" ]; then
-		curl -sL https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh | sudo bash -s -- -m $hassio_machine
+		curl -sL https://raw.githubusercontent.com/apex-connect/supervised/main/installer.sh | sudo bash -s -- -m $hassio_machine
 	else
 		echo "no selection"
 		exit
