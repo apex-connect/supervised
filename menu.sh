@@ -591,8 +591,8 @@ case $mainmenu_selection in
 	esac
 	;;
 
-"hassio")
-	echo "install requirements for hass.io"
+"apex-connect")
+	echo "install requirements for apex connect+"
 	sudo apt install -y bash jq curl avahi-daemon dbus
 	hassio_machine=$(whiptail --title "Machine type" --menu \
 		"Please select you device type" 20 78 12 -- \
