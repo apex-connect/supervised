@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #get path of menu correct
-pushd ~/IOTstack
+pushd ~/supervised
 
 CURRENT_BRANCH=${1:-$(git name-rev --name-only HEAD)}
 
@@ -501,8 +501,8 @@ case $mainmenu_selection in
 	"prune_images") ./scripts/prune-images.sh ;;
 	"aliases")
 		touch ~/.bash_aliases
-		if [ $(grep -c 'IOTstack' ~/.bash_aliases) -eq 0 ]; then
-			echo ". ~/IOTstack/.bash_aliases" >>~/.bash_aliases
+		if [ $(grep -c 'supervised' ~/.bash_aliases) -eq 0 ]; then
+			echo ". ~/supervised/.bash_aliases" >>~/.bash_aliases
 			echo "added aliases"
 		else
 			echo "aliases already added"
@@ -533,16 +533,16 @@ case $mainmenu_selection in
 		fi
 
 		#add enable file for Dropbox-Uploader
-		[ -d ~/IOTstack/backups ] || sudo mkdir -p ~/IOTstack/backups/
-		sudo touch ~/IOTstack/backups/dropbox
+		[ -d ~/supervised/backups ] || sudo mkdir -p ~/supervised/backups/
+		sudo touch ~/supervised/backups/dropbox
 		;;
 	"rclone")
 		sudo apt install -y rclone
 		echo "Please run 'rclone config' to configure the rclone google drive backup"
 
 		#add enable file for rclone
-		[ -d ~/IOTstack/backups ] || sudo mkdir -p ~/IOTstack/backups/
-		sudo touch ~/IOTstack/backups/rclone
+		[ -d ~/supervised/backups ] || sudo mkdir -p ~/supervised/backups/
+		sudo touch ~/supervised/backups/rclone
 		;;
 	esac
 	;;
