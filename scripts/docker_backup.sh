@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd ~/IOTstack
+pushd ~/supervised
 USER=$(whoami)
 
 [ -d ./backups ] || mkdir ./backups
@@ -49,7 +49,7 @@ du -h ./backups/$backupfile
 #remove older local backup files
 #to change backups retained,  change below +8 to whatever you want (days retained +1)
 ls -t1 ./backups/backup* | tail -n +8 | sudo xargs rm -f
-echo "last seven local backup files are saved in ~/IOTstack/backups"
+echo "last seven local backup files are saved in ~/supervised/backups"
 
 
 
