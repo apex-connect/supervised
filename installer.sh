@@ -23,7 +23,7 @@ IP_ADDRESS=$(hostname -I | awk '{ print $1 }')
 
 BINARY_DOCKER=/usr/bin/docker
 
-DOCKER_REPO=homeassistant
+DOCKER_REPO=apexconnect
 
 SERVICE_DOCKER="docker.service"
 SERVICE_NM="NetworkManager.service"
@@ -140,29 +140,29 @@ CONFIG=$SYSCONFDIR/hassio.json
 case $ARCH in
     "i386" | "i686")
         MACHINE=${MACHINE:=qemux86}
-        HASSIO_DOCKER="$DOCKER_REPO/i386-hassio-supervisor"
+        HASSIO_DOCKER="homeassistant/i386-hassio-supervisor"
     ;;
     "x86_64")
         MACHINE=${MACHINE:=qemux86-64}
-        HASSIO_DOCKER="$DOCKER_REPO/amd64-hassio-supervisor"
+        HASSIO_DOCKER="homeassistant/amd64-hassio-supervisor"
     ;;
     "arm" |"armv6l")
         if [ -z $MACHINE ]; then
             error "Please set machine for $ARCH"
         fi
-        HASSIO_DOCKER="$DOCKER_REPO/armhf-hassio-supervisor"
+        HASSIO_DOCKER="homeassistant/armhf-hassio-supervisor"
     ;;
     "armv7l")
         if [ -z $MACHINE ]; then
             error "Please set machine for $ARCH"
         fi
-        HASSIO_DOCKER="$DOCKER_REPO/armv7-hassio-supervisor"
+        HASSIO_DOCKER="homeassistant/armv7-hassio-supervisor"
     ;;
     "aarch64")
         if [ -z $MACHINE ]; then
             error "Please set machine for $ARCH"
         fi
-        HASSIO_DOCKER="$DOCKER_REPO/aarch64-hassio-supervisor"
+        HASSIO_DOCKER="homeassistant/aarch64-hassio-supervisor"
     ;;
     *)
         error "$ARCH unknown!"
