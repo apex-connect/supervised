@@ -128,8 +128,8 @@ EOF
 ##
 # Pull supervisor image
 echo "[Info] Install supervisor Docker container"
-docker pull "$HASSIO_DOCKER:$HASSIO_VERSION" > /dev/null
-docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+docker pull "homeassistant/armv7-hassio-supervisor:199" > /dev/null
+docker tag "homeassistant/armv7-hassio-supervisor:199" "homeassistant/armv7-hassio-supervisor:199" > /dev/null
 
 ##
 # Install Hass.io Supervisor
