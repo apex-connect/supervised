@@ -178,8 +178,6 @@ if [ ! -d "$DATA_SHARE" ]; then
     mkdir -p "$DATA_SHARE"
 fi
 
-# Read infos from web
-HASSIO_VERSION=$(curl -s $URL_VERSION | jq -e -r '.supervisor')
 
 ##
 # Write configuration
