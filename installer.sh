@@ -9,11 +9,13 @@ function error { echo -e "\e[31m[error] $*\e[39m"; exit 1; }
 
 warn ""
 warn "If you want more control over your own system, run"
-warn "Apex Connect + as a VM or run Apex MCU Core"
+warn "Apex Connect+ as a VM or run Apex MCU Core"
 warn "via a Docker container."
 warn ""
 warn "If you want to abort, hit ctrl+c within 10 seconds..."
 warn ""
+
+sleep 10
 
 ARCH=$(uname -m)
 
@@ -178,13 +180,15 @@ if [ ! -d "$DATA_SHARE" ]; then
     mkdir -p "$DATA_SHARE"
 fi
 
+# Read infos from web
+HASSIO_VERSION=$(curl -s $URL_VERSION | jq -e -r '.supervisor')
 
 ##
 # Write configuration
 cat > "$CONFIG" <<- EOF
 {
     "supervisor": "${HASSIO_DOCKER}",
-    "machine": "armv7",
+    "machine": "${MACHINE}",
     "data": "${DATA_SHARE}"
 }
 EOF
@@ -235,12 +239,12 @@ systemctl start hassio-supervisor.service
 
 ##
 # Setup CLI
-info "Installing the 'ha' cli"
+info "Installing the Apex MCU cli"
 curl -sL ${URL_HA} > "${PREFIX}/bin/ha"
 chmod a+x "${PREFIX}/bin/ha"
 
 info
-info "Apex Connect+ supervised is now installed"
+info "Apex MCU supervised is now installed"
 info "First setup will take some time, when it's ready you can reach it here:"
 info "http://${IP_ADDRESS}:1702"
 info
