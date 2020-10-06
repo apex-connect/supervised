@@ -148,13 +148,13 @@ case $ARCH in
         if [ -z $MACHINE ]; then
             error "Please set machine for $ARCH"
         fi
-        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor"
+        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor:latest"
     ;;
     "armv7l")
         if [ -z $MACHINE ]; then
             error "Please set machine for $ARCH"
         fi
-        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor"
+        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor:latest"
     ;;
     "aarch64")
         if [ -z $MACHINE ]; then
