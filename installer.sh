@@ -21,7 +21,7 @@ IP_ADDRESS=$(hostname -I | awk '{ print $1 }')
 
 BINARY_DOCKER=/usr/bin/docker
 
-DOCKER_REPO=apexconnect
+DOCKER_REPO=apexinfosys
 
 SERVICE_DOCKER="docker.service"
 SERVICE_NM="NetworkManager.service"
