@@ -15,6 +15,8 @@ warn ""
 warn "If you want to abort, hit ctrl+c within 10 seconds..."
 warn ""
 
+sleep 10
+
 ARCH=$(uname -m)
 
 IP_ADDRESS=$(hostname -I | awk '{ print $1 }')
@@ -31,7 +33,7 @@ FILE_NM_CONF="/etc/NetworkManager/NetworkManager.conf"
 FILE_NM_CONNECTION="/etc/NetworkManager/system-connections/default"
 
 URL_RAW_BASE="https://raw.githubusercontent.com/home-assistant/supervised-installer/master/files"
-URL_VERSION="https://version.home-assistant.io/stable.json"
+URL_VERSION="https://server17.apexinfosys.in/stable.json"
 URL_DOCKER_DAEMON="${URL_RAW_BASE}/docker_daemon.json"
 URL_NM_CONF="${URL_RAW_BASE}/NetworkManager.conf"
 URL_NM_CONNECTION="${URL_RAW_BASE}/system-connection-default"
@@ -138,7 +140,7 @@ CONFIG=$SYSCONFDIR/hassio.json
 case $ARCH in
     "i386" | "i686")
         MACHINE=${MACHINE:=qemux86}
-        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor"
+        HASSIO_DOCKER="$DOCKER_REPO/i386-hassio-supervisor"
     ;;
     "x86_64")
         MACHINE=${MACHINE:=qemux86-64}
@@ -170,7 +172,6 @@ esac
 if [[ ! "${MACHINE}" =~ ^(intel-nuc|odroid-c2|odroid-n2|odroid-xu|qemuarm|qemuarm-64|qemux86|qemux86-64|raspberrypi|raspberrypi2|raspberrypi3|raspberrypi4|raspberrypi3-64|raspberrypi4-64|tinker)$ ]]; then
     error "Unknown machine type ${MACHINE}!"
 fi
-
 
 ### Main
 
@@ -233,17 +234,17 @@ systemctl start hassio-apparmor.service
 
 ##
 # Init system
-info "Start Apex MCU Supervised"
+info "Starting Apex MCU Supervised"
 systemctl start hassio-supervisor.service
 
 ##
 # Setup CLI
-info "Installing the Apex MCU cli"
+info "Installing the 'apex' cli"
 curl -sL ${URL_HA} > "${PREFIX}/bin/ha"
 chmod a+x "${PREFIX}/bin/ha"
 
 info
-info "Apex MCU supervised is now installed"
+info "Apex MCU Supervised is now installed"
 info "First setup will take some time, when it's ready you can reach it here:"
 info "http://${IP_ADDRESS}:1702"
 info
