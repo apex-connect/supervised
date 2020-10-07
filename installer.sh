@@ -138,11 +138,11 @@ CONFIG=$SYSCONFDIR/hassio.json
 case $ARCH in
     "i386" | "i686")
         MACHINE=${MACHINE:=qemux86}
-        HASSIO_DOCKER="$DOCKER_REPO/i386-hassio-supervisor"
+        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor"
     ;;
     "x86_64")
         MACHINE=${MACHINE:=qemux86-64}
-        HASSIO_DOCKER="$DOCKER_REPO/amd64-hassio-supervisor"
+        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor"
     ;;
     "arm" |"armv6l")
         if [ -z $MACHINE ]; then
@@ -160,7 +160,7 @@ case $ARCH in
         if [ -z $MACHINE ]; then
             error "Please set machine for $ARCH"
         fi
-        HASSIO_DOCKER="$DOCKER_REPO/aarch64-hassio-supervisor"
+        HASSIO_DOCKER="$DOCKER_REPO/apexmcu-supervisor"
     ;;
     *)
         error "$ARCH unknown!"
@@ -171,6 +171,7 @@ if [[ ! "${MACHINE}" =~ ^(intel-nuc|odroid-c2|odroid-n2|odroid-xu|qemuarm|qemuar
     error "Unknown machine type ${MACHINE}!"
 fi
 
+
 ### Main
 
 # Init folders
@@ -178,11 +179,24 @@ if [ ! -d "$DATA_SHARE" ]; then
     mkdir -p "$DATA_SHARE"
 fi
 
+# Read infos from web
+HASSIO_VERSION=$(curl -s $URL_VERSION | jq -e -r '.supervisor')
+
+##
+# Write configuration
+cat > "$CONFIG" <<- EOF
+{
+    "supervisor": "${HASSIO_DOCKER}",
+    "machine": "${MACHINE}",
+    "data": "${DATA_SHARE}"
+}
+EOF
+
 ##
 # Pull supervisor image
 info "Install supervisor Docker container"
-docker pull "apexinfosys/apexmcu-supervisor:246" > /dev/null
-docker tag "apexinfosys/apexmcu-supervisor:246" "apexinfosys/apexmcu-supervisor:latest" > /dev/null
+docker pull "$HASSIO_DOCKER:$HASSIO_VERSION" > /dev/null
+docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
 
 ##
 # Install Hass.io Supervisor
