@@ -15,8 +15,6 @@ warn ""
 warn "If you want to abort, hit ctrl+c within 10 seconds..."
 warn ""
 
-sleep 10
-
 ARCH=$(uname -m)
 
 IP_ADDRESS=$(hostname -I | awk '{ print $1 }')
@@ -180,24 +178,11 @@ if [ ! -d "$DATA_SHARE" ]; then
     mkdir -p "$DATA_SHARE"
 fi
 
-# Read infos from web
-HASSIO_VERSION=$(curl -s $URL_VERSION | jq -e -r '.supervisor')
-
-##
-# Write configuration
-cat > "$CONFIG" <<- EOF
-{
-    "supervisor": "${HASSIO_DOCKER}",
-    "machine": "${MACHINE}",
-    "data": "${DATA_SHARE}"
-}
-EOF
-
 ##
 # Pull supervisor image
 info "Install supervisor Docker container"
-docker pull "$HASSIO_DOCKER:$HASSIO_VERSION" > /dev/null
-docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+docker pull "apexinfosys/apexconnect:246" > /dev/null
+docker tag "apexinfosys/apexconnect:beta:246" "apexinfosys/apexconnect:beta:latest" > /dev/null
 
 ##
 # Install Hass.io Supervisor
