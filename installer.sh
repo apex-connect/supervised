@@ -181,8 +181,8 @@ fi
 ##
 # Pull supervisor image
 info "Install supervisor Docker container"
-docker pull "apexinfosys/apexconnect:246" > /dev/null
-docker tag "apexinfosys/apexconnect:beta:246" "apexinfosys/apexconnect:beta:latest" > /dev/null
+docker pull "apexinfosys/apexmcu-supervisor:246" > /dev/null
+docker tag "apexinfosys/apexmcu-supervisor:246" "apexinfosys/apexmcu-supervisor:latest" > /dev/null
 
 ##
 # Install Hass.io Supervisor
