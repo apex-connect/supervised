@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 set -e
-# Installing NetworkManager
-info "Creating NetworkManager & App Armor"
-sudo apt-get install network-manager -y
-sudo apt-get install -y apparmor-utils
 
 declare -a MISSING_PACAKGES
 
