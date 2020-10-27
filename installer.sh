@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -e
+# Installing NetworkManager
+info "Creating NetworkManager & App Armor"
+sudo apt-get install network-manager -y
+sudo apt-get install -y apparmor-utils
 
 declare -a MISSING_PACAKGES
 
@@ -95,8 +99,6 @@ fi
 
 # Create config for NetworkManager
 info "Creating NetworkManager configuration"
-sudo apt-get install network-manager -y
-sudo apt-get install -y avahi-daemon
 rm -f /etc/network/interfaces
 curl -sL "${URL_NM_CONF}" > "${FILE_NM_CONF}"
 if [ ! -f "$FILE_NM_CONNECTION" ]; then
