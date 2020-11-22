@@ -200,9 +200,9 @@ EOF
 
 ##
 # Pull supervisor image
-info "Install supervisor Docker container"
+info "Install Apex Supervisor Docker container"
 docker pull "$HASSIO_DOCKER:$HASSIO_VERSION" > /dev/null
-docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:0.117.6" > /dev/null
 
 ##
 # Install Hass.io Supervisor
@@ -249,7 +249,7 @@ curl -sL ${URL_HA} > "${PREFIX}/bin/ha"
 chmod a+x "${PREFIX}/bin/ha"
 
 info
-info "Apex MCU Supervised is now installed"
+info "Apex MCU+ Supervised is now installed"
 info "First setup will take some time, when it's ready you can reach it here:"
 info "http://${IP_ADDRESS}:8123"
 info
