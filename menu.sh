@@ -593,7 +593,7 @@ case $mainmenu_selection in
 
 "apex-connect")
 	echo "Installation requirements for Apex Connect+ over MCU"
-	sudo apt install -y bash jq curl avahi-daemon dbus
+	sudo apt install -y bash jq curl network-manager apparmor-utils dbus
 	hassio_machine=$(whiptail --title "Machine type" --menu \
 		"Please select you device type" 20 78 12 -- \
 		"raspberrypi4" " " \
