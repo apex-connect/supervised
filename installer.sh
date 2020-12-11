@@ -51,7 +51,6 @@ command -v apparmor_parser > /dev/null 2>&1 || MISSING_PACAKGES+=("AppArmor")
 command -v docker > /dev/null 2>&1 || MISSING_PACAKGES+=("docker")
 command -v jq > /dev/null 2>&1 || MISSING_PACAKGES+=("jq")
 command -v curl > /dev/null 2>&1 || MISSING_PACAKGES+=("curl")
-command -v avahi-daemon > /dev/null 2>&1 || MISSING_PACAKGES+=("avahi")
 command -v dbus-daemon > /dev/null 2>&1 || MISSING_PACAKGES+=("dbus")
 
 
